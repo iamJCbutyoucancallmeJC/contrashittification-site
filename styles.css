@@ -80,6 +80,19 @@ h1 {
 
 .say { font-size: 1.1rem; }
 
+/* The occasional hand-drawn underline (JC, 2026-11-04). A mark on a phrase, not a
+   decoration on every claim: two on the page, both on the thing a reader would repeat.
+   Pen, the same blue as the chart lines, so the marks and the data read as one hand.
+   It stretches to the phrase rather than tiling, so no two are the same length. */
+.ul {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%207%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M1%2C4.6%20C16%2C2.3%2031%2C5.6%2047%2C3.4%20C62%2C1.6%2078%2C5.4%2093%2C3.2%20C103%2C1.9%20112%2C4.4%20119%2C2.9%22%20fill%3D%22none%22%20stroke%3D%22%232f6fb0%22%20stroke-width%3D%222.1%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.92%22%2F%3E%3Cpath%20d%3D%22M8%2C6.4%20C26%2C4.8%2048%2C6.8%2070%2C5.2%20C87%2C4.0%20102%2C6.2%20115%2C4.8%22%20fill%3D%22none%22%20stroke%3D%22%232f6fb0%22%20stroke-width%3D%221.3%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.38%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.44em;
+  padding: 0 0.1em 0.16em;
+  margin: 0 -0.1em;
+}
+
 figure { margin: 1.25rem 0 0.75rem; }
 
 .chart { display: block; width: 100%; height: auto; overflow: visible; }

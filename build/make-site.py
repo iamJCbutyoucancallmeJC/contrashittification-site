@@ -8,8 +8,9 @@ changed in one place and the page rebuilt. The charts are drawn from the Our Wor
 in Data CSVs in build/data (CC BY 4.0; the underlying data keeps its provider's
 terms, which is why each source line names both). Nothing is fetched at build time.
 
-Design: family tokens only (paper-100 ground, ink text, ink-muted meta, pen links,
-gold for the one chart annotation, radius 0, 640 measure). See the vault's
+Design: family tokens only (paper-100 ground, ink text, ink-muted meta, pen links and
+chart lines, gold for the one chart annotation, radius 0, 640 measure). JC ruled the
+blue chart line and the occasional hand-drawn underline on 2026-11-04. See the vault's
 design-language-system.md. Shape (a), the scroll, JC's pick 2026-11-04.
 """
 import csv
@@ -78,13 +79,20 @@ def chart(series, *, log=False, fmt=lambda v: f"{v:,.0f}"):
     peak_x = px(peak_year)
     peak_anchor = "" if peak_x < width / 2 else " c-end"
     high_label, end_label = fmt(series[peak_year]), fmt(series[x1])
+    # Lift the end label clear of the line itself, not just of the end point. A series that
+    # arrives almost flat (solar) runs under the whole width of the label, and a fixed offset
+    # let the glyphs touch it by 1.4px. Measure the line across the label's own x-range in
+    # 11px IBM Plex Mono (0.6em advance) and sit 10px above the highest point there.
+    label_w = len(end_label) * 11 * 0.6
+    under = [py(series[y]) for y in years if px(y) >= end_x - label_w - 2]
+    end_label_y = (min(under) if under else end_y) - 10
     return f"""<svg class="chart" viewBox="0 0 {width} {height}" role="img"
      aria-label="{x0} to {x1}: {html.escape(high_label)} in {peak_year}, down to {html.escape(end_label)} in {x1}">
-  <polyline points="{points}" fill="none" stroke="var(--ink)" stroke-width="1.5"
+  <polyline points="{points}" fill="none" stroke="var(--pen)" stroke-width="1.5"
             stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
   <circle cx="{end_x:.1f}" cy="{end_y:.1f}" r="3.5" fill="var(--gold)"/>
   <text class="c-val{peak_anchor}" x="{peak_x:.1f}" y="{py(series[peak_year]) - 8:.1f}">{html.escape(high_label)}</text>
-  <text class="c-val c-end" x="{end_x:.1f}" y="{end_y - 16:.1f}">{html.escape(end_label)}</text>
+  <text class="c-val c-end" x="{end_x:.1f}" y="{end_label_y:.1f}">{html.escape(end_label)}</text>
   <text class="c-yr" x="{pad_l}" y="{height - 8}">{x0}</text>
   <text class="c-yr c-end" x="{width - pad_r}" y="{height - 8}">{x1}</text>
 </svg>"""
@@ -97,8 +105,8 @@ guinea = world_series("guinea-worm-world.csv", "guinea_worm_reported_cases")
 POSTS = [
     dict(
         kind="the long line",
-        body="In 1800, more than four in ten children died before their fifth birthday. "
-             "Now it is fewer than four in a hundred, everywhere on earth.",
+        body='In 1800, more than four in ten children died before their fifth birthday. '
+             'Now it is <span class="ul">fewer than four in a hundred</span>, everywhere on earth.',
         figure=chart(child, fmt=lambda v: f"{v:.1f}%"),
         meta=f"Share of children who die before age five, world, {min(child)} to {max(child)}. "
              "Linear scale.",
@@ -116,8 +124,9 @@ POSTS = [
     ),
     dict(
         kind="good news",
-        body="Leaded petrol is gone from every country on earth. Algeria sold the last of it "
-             "in July 2021, almost a century after we started putting lead in the air.",
+        body='Leaded petrol is gone from <span class="ul">every country on earth</span>. '
+             'Algeria sold the last of it in July 2021, almost a century after we started '
+             'putting lead in the air.',
         meta="Announced 30 August 2021.",
         source="UN Environment Programme",
         href="https://www.unep.org/news-and-stories/press-release/era-leaded-petrol-over-eliminating-major-threat-human-and",
