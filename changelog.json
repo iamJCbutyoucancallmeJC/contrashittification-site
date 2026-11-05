@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "site": {
+    "name": "contrashittification",
+    "url": "https://contrashittification.com",
+    "home": "/",
+    "ogImage": "/og-image.png"
+  },
+  "entries": [
+    {
+      "date": "2026-11-04",
+      "title": "A shelf, not a sermon",
+      "summary": "First page up: a scroll of five posts, two kinds of proof. The name has a swear in it, so the first screen has to read as a gift rather than a rant.",
+      "important": true,
+      "note": "I kind of feel like something needs to go up before Saturday. To fulfill my role, my commitment to myself.",
+      "options": [
+        {
+          "key": "a",
+          "title": "The scroll",
+          "blurb": "Name, one promise line, posts newest first. Five posts and the page is real; adding one is appending a block.",
+          "picked": "Smallest honest page, and it leaves the chart-first version available later with no rework."
+        },
+        {
+          "key": "b",
+          "title": "Manifesto over stream",
+          "blurb": "Three or four paragraphs on what the site is for, then the stream. Rejected: the words have to be JC's, and a manifesto written for him is exactly the rant a stranger already expects."
+        },
+        {
+          "key": "c",
+          "title": "Chart as the front door",
+          "blurb": "One long-run chart fills the first screen. Strongest first impression, but it fixes the register as a data site before anything has been posted in the other three types. Held as the next move."
+        }
+      ]
+    }
+  ]
+}
