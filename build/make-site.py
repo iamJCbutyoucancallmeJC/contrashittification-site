@@ -165,6 +165,17 @@ def post_html(post):
     </article>"""
 
 
+# GA4 property 562935330 (JC's projects), created 2026-11-06. Enhanced Measurement on.
+GA_ID = "G-XFQPB37JF4"
+GA = f"""<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>"""
+
+
 PAGE = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,6 +196,7 @@ PAGE = f"""<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/styles.css">
+{GA}
 </head>
 <body>
   <header>
